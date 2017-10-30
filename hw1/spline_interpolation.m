@@ -1,7 +1,7 @@
 function y0 = spline_interpolation(x, y, f0, fn, x0, kind)
 
 n = length(x); m = length(x0);
-y0 = zeros(m);
+y0 = zeros(m,1);
 
 % 中间变量定义
 miu = zeros(n);

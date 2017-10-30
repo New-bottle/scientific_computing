@@ -1,29 +1,22 @@
-function [y] = poly_interpolation(n)
+function [y0] = poly_interpolation(x, y, x0)
 % lagrange interpolation
 
-x0 = [-1:2.0/n:1];
-y0 = 1./(1+25.*x0.*x0);
-
-x = [-1:0.01:1];
-n = length(x0);
-m = length(x);
-y = zeros(m);
+n = length(x);
+m = length(x0);
+y0 = zeros(m,1);
 
 for i = 1:m
 	s=0.0;
-	z = x(i);
+	z = x0(i);
 	for k = 1:n
 		p=1.0;
 		for j=1:n
 			if j~=k
-				p=p*(z-x0(j))/(x0(k)-x0(j));
+				p=p*(z-x(j))/(x(k)-x(j));
 			end
 		end
-		s=p*y0(k)+s;
+		s=p*y(k)+s;
 	end
-	y(i)=s;
+	y0(i)=s;
 end
 
-plot(x,y,'r');
-hold on;
-plot(x,1./(1+25.*x.*x),'blue');
