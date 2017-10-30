@@ -12,6 +12,8 @@ subplot(3,1,1);
 plot(x0, 1./(1+25.*x0.*x0), 'b', 'LineWidth', 4);
 hold on;
 plot(x0, y0, 'r', 'LineWidth', 2);
+legend('原函数','多项式插值函数');
+title('第一种边界条件插值');
 
 % 第二种边界条件
 f0 = (3750-50.0) / (1+25)^3;
@@ -22,6 +24,8 @@ subplot(3,1,2);
 plot(x0, 1./(1+25.*x0.*x0), 'b', 'LineWidth', 4);
 hold on;
 plot(x0, y0, 'r', 'LineWidth', 2);
+legend('原函数','多项式插值函数');
+title('第二种边界条件插值');
 
 % 第三种边界条件
 f0 = -1;
@@ -32,4 +36,6 @@ subplot(3,1,3);
 plot(x0, 1./(1+25.*x0.*x0), 'b', 'LineWidth', 4);
 hold on;
 plot(x0, y0, 'r', 'LineWidth', 2);
+legend('原函数','多项式插值函数');
+title('第三种边界条件插值');
 
