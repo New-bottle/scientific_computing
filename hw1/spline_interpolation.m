@@ -30,6 +30,14 @@ if kind == 2
 	d(1) = 2*f0;
 	d(n) = 2*fn;
 end
+if kind == 3
+	lambda(1) = 0;
+	miu(1) = 0;
+	lambda(n) = h(1) / (h(1) + h(n-1));
+	miu(n) = 1-lambda(n);
+	d(1) = 0;
+	d(n) = 6*((y(2)-y(1))/(x(2)-x(1))-(y(n)-y(n-1))/(x(n)-x(n-1)))/(h(1)+h(n-1));
+end
 
 % 列出方程
 A = zeros(n,n);
@@ -43,7 +51,14 @@ for i = 1:n
 	end
 end
 
+if kind == 3
+	A(2,n) = miu(2);
+	A(n,2) = lambda(n);
+end
 M = A\d;
+if kind == 3
+	M(1) = M(n);
+end
 
 for i = 1:m
 	z = x0(i);
