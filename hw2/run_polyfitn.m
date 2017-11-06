@@ -11,8 +11,5 @@ hold on;
 y0 = polyfitn(x, y, x0, 4);
 plot(x0, y0);
 hold on;
-y0 = polyfitn(x, y, x0, 6);
-plot(x0, y0);
-hold on;
 
-legend("数据点","三次多项式插值曲线","四次多项式插值曲线", "六次多项式插值曲线");
+legend("数据点","三次多项式插值曲线","四次多项式插值曲线");
