@@ -1,18 +1,15 @@
-k = [1:1:1000];
-h = 1./k;
-n = size(h,2);
-R = zeros(1,n);
+function T = Romberg(n)
 
-for i = 1:n
-	x = [0:h(i):1];
-	y = sqrt(x).*log(x);
-	y(1) = 0;
-	Tn = 0;
-	for j = 1:k(i)
-		xm = (x(j) + x(j+1))/2;
-		Tn = Tn + h(i)/6*(y(j)+4*sqrt(xm)*log(xm)+y(j+1));
-	end
-%	Tn = h(i)*sum(y)-h(i)/2 * (y(1)+y(size(y,2)));
-	R(i) = Tn+4/9;
+T = zeros(1,n);
+t = zeros(n,n);
+% 梯形可以用递推的方式计算，此处为了方便直接调用了第一问写好的函数
+% 即t[k][1] = t[k-1][1]/2 + 1/2*sum(区间中点处函数值)
+for k = 1:n
+	t(k,1) = Trapezoidal(2^(k-1));
 end
-plot(h, R);
+for k = 1:n
+	for m = 2:k
+		t(k,m) = (4^(m-1))/(4^(m-1)-1)*t(k, m-1) - 1/(4^(m-1)-1)*t(k-1, m-1);
+	end
+end
+T = t(n,n);
