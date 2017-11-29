@@ -23,13 +23,13 @@ ylabel("R");
 
 subplot(3,1,3);
 n = 15;
-h = zeros(1, n);
+h = ones(1, n);
 R = ones(1, n);
 for i = 2:n
-	h(i) = h(i-1) - 1;
+	h(i) = h(i-1)/2;
 	R(i) = Romberg(i)+4/9;
 end
 plot(h, R);
-title("Romberg求积方法log2(h)-R");
+title("Romberg求积方法h-R");
 xlabel("h");
 ylabel("R");
