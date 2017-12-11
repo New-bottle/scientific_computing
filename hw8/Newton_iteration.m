@@ -1,10 +1,10 @@
-function times = Newton_iteration(x0, f, f1, f2, eps)
+function [xn,times] = Newton_iteration(x0, f, f1, f2, eps)
 
-x1 = Newton_iteration_step(x0, f, f1, f2);
+xn = Newton_iteration_step(x0, f, f1, f2);
 times = 1;
-while (abs(x0 - x1) > eps)
-	x0 = x1;
-	x1 = Newton_iteration_step(x0, f, f1, f2);
+while (abs(x0 - xn) > eps)
+	x0 = xn;
+	xn = Newton_iteration_step(x0, f, f1, f2);
 	times = times + 1;
 end
 

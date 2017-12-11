@@ -11,7 +11,7 @@ for i = 1:n
 	[xn,time_stef(i)] = Steffensen(x0, @phi_1, eps);
 end
 
-subplot(2,1,1);
+subplot(3,1,1);
 plot(x, times);
 hold on;
 plot(x, time_stef);
@@ -30,7 +30,7 @@ end
 %times
 %time_stef
 
-subplot(2,1,2);
+subplot(3,1,2);
 plot(x, times);
 hold on;
 plot(x, time_stef);
@@ -38,6 +38,16 @@ legend("direct", "steffensen");
 
 %------------------------- Newton --------------------------%
 
+for i = 1:n
+	x0 = x(i);
+	[xn,time_stef(i)] = Steffensen(x0, @phi_2, eps);
+	[xn, times_newton(i)] = Newton_iteration(x0, @f2, @df2, @ddf2, eps);
+end
+subplot(3,1,3);
+plot(x, time_stef);
+hold on;
+plot(x, times_newton);
+legend("steffensen", "Newton");
 
 % --------------------------------------------------------- %
 function y = f1(x)
@@ -53,4 +63,10 @@ end
 function Xn = phi_2(x)
 	Xn = -2.*(x.^2.-10)./(x.^2.+10);
 %	Xn = (-(2*x.*x+10*x-20)).^(1.0/3.0);
+end
+function y = df2(x)
+	y = 3*x.^2+4*x+10;
+end
+function y = ddf2(x)
+	y = 6*x+4;
 end
