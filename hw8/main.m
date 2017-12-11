@@ -17,9 +17,10 @@ subplot(2,1,1);
 plot(x, times);
 hold on;
 plot(x, time_stef);
+legend("direct", "steffensen");
 
 % 方程2
-x = [0:0.02:2];
+x = [1:0.02:3];
 n = size(x,2)
 times = zeros(1,n);
 time_stef = zeros(1,n);
@@ -35,6 +36,7 @@ subplot(2,1,2);
 plot(x, times);
 hold on;
 plot(x, time_stef);
+legend("direct", "steffensen");
 
 
 function y = f1(x)
@@ -47,6 +49,6 @@ function y = f2(x)
 	y = x.^3+2*x.^2+10*x-20;
 end
 function Xn = phi_2(x)
-	Xn = -(x.^3+2*x.^2-20)/10;
+	Xn = -2.*(x.^2.-10)./(x.^2.+10);
 %	Xn = (-(2*x.*x+10*x-20)).^(1.0/3.0);
 end
