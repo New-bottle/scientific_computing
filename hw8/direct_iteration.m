@@ -1,11 +1,10 @@
-function times = direct_iteration(x0, f, phi, eps)
+function [xn,times] = direct_iteration(x0, f, phi, eps)
 
-x0 = 1;
-x1 = phi(x0);
+xn = phi(x0);
 times = 1;
-while (abs(x1 - x0) > eps)
-	x0 = x1;
-	x1 = phi(x0);
+while (abs(xn - x0) > eps)
+	x0 = xn;
+	xn = phi(x0);
 	times = times + 1;
 end
 %{
