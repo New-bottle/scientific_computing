@@ -15,6 +15,7 @@ subplot(3,1,1);
 plot(x, times);
 hold on;
 plot(x, time_stef);
+ylabel("迭代次数");
 legend("direct", "steffensen");
 
 % 方程2
@@ -34,6 +35,7 @@ subplot(3,1,2);
 plot(x, times);
 hold on;
 plot(x, time_stef);
+ylabel("迭代次数");
 legend("direct", "steffensen");
 
 %------------------------- Newton --------------------------%
@@ -44,10 +46,11 @@ for i = 1:n
 	[xn, times_newton(i)] = Newton_iteration(x0, @f2, @df2, @ddf2, eps);
 end
 subplot(3,1,3);
-plot(x, time_stef);
 hold on;
 plot(x, times_newton);
-legend("steffensen", "Newton");
+plot(x, time_stef);
+ylabel("迭代次数");
+legend("Newton", "steffensen");
 
 % --------------------------------------------------------- %
 function y = f1(x)
